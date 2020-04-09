@@ -16,7 +16,7 @@ defmodule RecumapWeb.Router do
   scope "/", RecumapWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", UserController, :index
 
     resources "/users", UserController
   end
