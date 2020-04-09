@@ -35,3 +35,6 @@ npm-debug.log
 
 .env
 .env.prod
+
+# VS plugin
+/.elixir_ls/
