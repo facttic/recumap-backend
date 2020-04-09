@@ -19,6 +19,8 @@ defmodule RecumapWeb.Router do
     get "/", UserController, :index
 
     resources "/users", UserController
+    resources "/resource_types", ResourceTypeController
+    resources "/resources", ResourceController
   end
 
   # Other scopes may use custom stacks.

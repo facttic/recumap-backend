@@ -25,6 +25,12 @@
           <nav class="torch-nav">
             <a href="/users">Users</a>
           </nav>
+          <nav class="torch-nav">
+            <a href="/resource_types">Resource Types</a>
+          </nav>
+          <nav class="torch-nav">
+            <a href="/resources">Resources</a>
+          </nav>
         </div>
       </section>
     </header>

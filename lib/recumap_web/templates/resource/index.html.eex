@@ -1,0 +1,79 @@
+<section id="torch-toolbar">
+  <div class="torch-container">
+    <%= link "New Resource", to: Routes.resource_path(@conn, :new) %>
+  </div>
+</section>
+<section id="torch-index-content">
+  <div class="torch-container">
+    <section id="torch-filters">
+      <h3>Find Resources</h3>
+      <%= form_tag @conn.request_path, method: :get, id: "torch-filters-form" do %>
+        
+          <div class="field">
+            <label>Name</label>
+            <%= filter_select(:resource, :name, @conn.params) %>
+            <%= filter_string_input(:resource, :name, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Demographics</label>
+            <%= filter_select(:resource, :demographics, @conn.params) %>
+            <%= filter_string_input(:resource, :demographics, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Details</label>
+            <%= filter_select(:resource, :details, @conn.params) %>
+            <%= filter_text_input(:resource, :details, @conn.params) %>
+          </div>
+        
+        
+        
+        
+        <button type="submit" class="torch-button">Search</button>
+        <%= link "Clear Filters", to: Routes.resource_path(@conn, :index) %>
+      <% end %>
+
+    </section>
+
+    <section id="torch-table">
+    <%= if length(@resources) > 0 do %>
+      <table>
+        <thead>
+          <tr>
+            
+              <th><%= table_link(@conn, "Name", :name) %></th>
+            
+              <th><%= table_link(@conn, "Demographics", :demographics) %></th>
+            
+              <th><%= table_link(@conn, "Details", :details) %></th>
+            
+            <th><span>Actions</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for resource <- @resources do %>
+            <tr>
+              
+                <td><%= resource.name %></td>
+              
+                <td><%= resource.demographics %></td>
+              
+                <td><%= resource.details %></td>
+              
+              <td class="torch-actions">
+                <span><%= link "Show", to: Routes.resource_path(@conn, :show, resource) %></span>
+                <span><%= link "Edit", to: Routes.resource_path(@conn, :edit, resource) %></span>
+                <span><%= link "Delete", to: Routes.resource_path(@conn, :delete, resource), method: :delete, data: [confirm: "Are you sure?"] %></span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= render Torch.PaginationView, "_pagination.html", assigns %>
+    <% else %>
+      <p class="torch-no-data">No Resources match your search.</p>
+    <% end %>
+    </section>
+  </div>
+</section>
