@@ -26,8 +26,13 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 config :torch,
-  otp_app: :my_app_name,
+  otp_app: :recumap,
   template_format: "eex"
+
+config :recumap, :pow,
+  user: Recumap.Users.User,
+  repo: Recumap.Repo
+
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
