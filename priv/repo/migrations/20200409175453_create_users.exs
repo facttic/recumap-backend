@@ -12,5 +12,6 @@ defmodule Recumap.Repo.Migrations.CreateUsers do
     end
 
     create unique_index(:users, [:email])
+    create index(:users, [:name])
   end
 end

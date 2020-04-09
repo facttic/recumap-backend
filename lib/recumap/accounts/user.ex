@@ -6,6 +6,8 @@ defmodule Recumap.Accounts.User do
     field :email, :string
     field :is_verified, :boolean, default: false
     field :name, :string
+    field :password, :string, virtual: true
+    field :password_confirmation, :string, virtual: true
     field :password_hash, :string
 
     timestamps()
@@ -15,7 +17,8 @@ defmodule Recumap.Accounts.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:name, :email, :is_verified, :password_hash])
-    |> validate_required([:name, :email, :is_verified, :password_hash])
+    |> validate_required([:name, :email])
+    |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)
   end
 end
