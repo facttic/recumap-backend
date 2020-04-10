@@ -8,7 +8,6 @@ server:
 
 release: MIX_ENV=prod
 release:
-	@NODE_ENV=prod npm run deploy
 	@mix phx.digest && PORT=4000 mix release
 	@_build/prod/rel/coophub/bin/coophub start_iex
 
@@ -16,7 +15,8 @@ compile:
 	@mix compile
 
 test: MIX_ENV=test
-test: dialyzer
+test:
+	# @dialyzer
 	@mix test
 
 dialyzer: MIX_ENV=dev

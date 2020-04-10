@@ -55,7 +55,20 @@ Exit out of the postgres user’s shell session to get back to your regular user
 exit
 ```
 
-## To start your Phoenix server
+## To start your Phoenix server using Makefile
+
+Makefile gathers a list of useful commands.
+
+* `make server` sources `.env` for environment variables and runs `mix phx.server` inside iex.
+* `make compile` is an alias for `mix compile`.
+
+* `make release` hasn't yet been implemented. Sets MIX_ENV to prod and runs mix commands required to create a release.
+* `make test` hasn't yet been implemented. Sets MIX_ENV to test and runs tests.
+* `make dializer` hasn't been implemented.
+* `make plt` hasn't been implemented.
+* `make clean` hasn't yet been implemented. Cleans and reinstalls deps and npm packages.
+
+## To start your Phoenix server using mix
 
 * Install dependencies with `mix deps.get`
 * Create and export env variables for your dev PostgreSQL configuration. E.g.: `.env.example`
