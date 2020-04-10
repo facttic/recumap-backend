@@ -3,10 +3,12 @@ defmodule RecumapWeb.ResourceApiController do
 
   alias Recumap.Resources
 
+  action_fallback RecumapWeb.FallbackController
+
   def index(conn, params) do
     case Resources.paginate_resources(params) do
-      {:ok, resources} ->
-        render(conn, "index.json", resources: resources)
+      {:ok, assigns} ->
+        render(conn, "index.json", resources: assigns.resources)
       _ ->
         render_status(conn, 500)
       end
