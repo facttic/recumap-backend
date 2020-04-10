@@ -21,11 +21,13 @@ defmodule RecumapWeb.Router do
     resources "/users", UserController
     resources "/resource_types", ResourceTypeController
     resources "/resources", ResourceController
+    resources "/orgs", OrgController
   end
 
   scope "/api", RecumapWeb do
     pipe_through :api
 
     get "/resources", ResourceApiController, :index
+    resources "/orgs", OrgApiController
   end
 end
