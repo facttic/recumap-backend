@@ -23,8 +23,9 @@ defmodule RecumapWeb.Router do
     resources "/resources", ResourceController
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", RecumapWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", RecumapWeb do
+    pipe_through :api
+
+    get "/resources", ResourceApiController, :index
+  end
 end

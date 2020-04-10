@@ -24,6 +24,13 @@ defmodule RecumapWeb do
       import Plug.Conn
       import RecumapWeb.Gettext
       alias RecumapWeb.Router.Helpers, as: Routes
+
+      defp render_status(conn, code),
+        do:
+          conn
+          |> put_status(code)
+          |> put_view(Recumap.ErrorView)
+          |> render("#{code}.html")
     end
   end
 
