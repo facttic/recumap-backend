@@ -11,7 +11,12 @@
       <section id="torch-account-info">
         <div class="torch-container">
           <a href="/">user@example.com</a>
-          <a href="/">Logout</a>
+          <%= if Pow.Plug.current_user(@conn) do %>
+            <span><%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), method: :delete %></span>
+          <% else %>
+            <span><%= link "Register", to: Routes.pow_registration_path(@conn, :new) %></span>
+            <span><%= link "Sign in", to: Routes.pow_session_path(@conn, :new) %></span>
+          <% end %>
         </div>
       </section>
 

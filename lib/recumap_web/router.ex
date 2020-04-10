@@ -1,5 +1,11 @@
 defmodule RecumapWeb.Router do
   use RecumapWeb, :router
+  use Pow.Phoenix.Router
+
+  pipeline :protected do
+    plug Pow.Plug.RequireAuthenticated,
+      error_handler: Pow.Phoenix.PlugErrorHandler
+  end
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,8 +19,14 @@ defmodule RecumapWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", RecumapWeb do
+  scope "/" do
     pipe_through :browser
+
+    pow_routes()
+  end
+
+  scope "/", RecumapWeb do
+    pipe_through [:browser, :protected]
 
     get "/", UserController, :index
 
