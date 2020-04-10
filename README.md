@@ -81,7 +81,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 ## API Endpoints
 ### AUTH
 * POST api/registration (Register user)
-    Body Keys: user[email], user[password], user[pasword_confirmation]
+    Body Keys: user[email], user[password], user[password_confirmation]
 * POST api/session (It returns a Token)
     Body Keys: user[email], user[password]
 
