@@ -1,0 +1,9 @@
+header img {
+  padding: 10px 30px 10px 0;
+  width: 92px;
+}
+
+.MuiAppBar-colorSecondary {
+  color: gray;
+  background-color: white;
+}
