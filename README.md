@@ -1,6 +1,17 @@
 # Recumap
 
-## Development
+> This project was build during Hacktic as a merge of [this](https://hackdash.org/projects/5e8cfd3b875b954b4a1d1400) and [this](https://hackdash.org/projects/5e8b505e875b954b4a1d13f8) projects. During this Hackaton many [Facttic](https://facttic.org.ar/) coops have participated.
+
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
+[![License](https://img.shields.io/github/license/facttic/recumap-backend)](LICENSE.md)
+
+## Objectives
+
+* To provide social organizations with a simple tool to create and track family houses or other locations which may need special assistance.
+* Facilitate the opportunity to offer donations to these organizations.
+* Map and publish resources which may be of aid to the public during COVID-19 emergency.
+
+## Development requirements
 
 Built using the Elixir's [Phoenix Framework](https://phoenixframework.org/). To run this app you will need:
 
@@ -79,12 +90,15 @@ Makefile gathers a list of useful commands.
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## API Endpoints
+
 ### AUTH
+
 * POST api/registration (Register user)
     Body Keys: user[email], user[password], user[password_confirmation]
 * POST api/session (It returns a Token)
     Body Keys: user[email], user[password]
 
 ### API (Should add Authorization header with token)
-* GET api/orgs 
+
+* GET api/orgs
 * GET api/resources
