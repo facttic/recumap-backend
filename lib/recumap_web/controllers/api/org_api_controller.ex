@@ -8,7 +8,6 @@ defmodule RecumapWeb.OrgApiController do
 
   @spec index(Plug.Conn.t(), map) :: Plug.Conn.t()
   def index(conn, params) do
-    IO.puts(params)
     case Orgs.paginate_orgs(params) do
       {:ok, assigns} ->
         render(conn, "index.json", orgs: assigns.orgs)
