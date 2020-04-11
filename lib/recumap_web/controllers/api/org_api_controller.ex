@@ -18,7 +18,6 @@ defmodule RecumapWeb.API.OrgApiController do
               put_in(params, ["org", "public"], true)
           end
       _ ->
-        IO.puts("LOGUEADO!")
         params
       end      
       
