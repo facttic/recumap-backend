@@ -9,4 +9,10 @@ defmodule Recumap.Accounts.User do
     pow_user_fields()
     timestamps()
   end
+
+  def changeset(user_or_changeset, attrs) do
+    user_or_changeset
+    |> pow_changeset(attrs)
+  end
 end
+
