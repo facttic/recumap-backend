@@ -19,11 +19,13 @@ defmodule RecumapWeb.API.OrgApiController do
           end
       _ ->
         params
-      end      
-      
+      end
+
       case Orgs.paginate_orgs(paginate_params) do
         {:ok, assigns} ->
-          render(conn, "index.json", orgs: assigns.orgs)
+          conn
+          |> put_resp_header("X-Total-Count", Integer.to_string(assigns.total_entries))
+          |> render("index.json", orgs: assigns.orgs)
         _ ->
           render_status(conn, 500)
       end

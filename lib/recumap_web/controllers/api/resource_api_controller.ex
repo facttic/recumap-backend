@@ -9,7 +9,9 @@ defmodule RecumapWeb.API.ResourceApiController do
   def index(conn, params) do
     case Resources.paginate_resources(params) do
       {:ok, assigns} ->
-        render(conn, "index.json", resources: assigns.resources)
+        conn
+        |> put_resp_header("X-Total-Count", Integer.to_string(assigns.total_entries))
+        |> render("index.json", resources: assigns.resources)
       _ ->
         render_status(conn, 500)
       end
