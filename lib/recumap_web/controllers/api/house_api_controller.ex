@@ -10,7 +10,9 @@ defmodule RecumapWeb.API.HouseApiController do
   def index(conn, params) do
     case Houses.paginate_houses(params) do
       {:ok, assigns} ->
-        render(conn, "index.json", houses: assigns.houses)
+        conn
+        |> put_resp_header("X-Total-Count", Integer.to_string(assigns.total_entries))
+        |> render("index.json", houses: assigns.houses)
       _ ->
         render_status(conn, 500)
       end
