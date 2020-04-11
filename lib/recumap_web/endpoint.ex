@@ -49,6 +49,7 @@ defmodule RecumapWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug Pow.Plug.Session, otp_app: :recumap
+  plug Pow.Plug.Session, otp_app: :recumap,
+    session_ttl_renewal: :timer.hours(5)
   plug RecumapWeb.Router
 end
