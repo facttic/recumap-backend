@@ -7,6 +7,10 @@ defmodule RecumapWeb.ResourceApiView do
     %{data: render_many(resources, ResourceApiView, "resource.json")}
   end
 
+  def render("show.json", %{resource: resource}) do
+    %{data: render_one(resource, ResourceApiView, "resource.json")}
+  end
+
   def render("resource.json", %{resource_api: resource}) do
     %{id: resource.id,
       responsible_name: resource.responsible_name,
