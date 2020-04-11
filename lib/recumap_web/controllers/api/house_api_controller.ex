@@ -1,4 +1,4 @@
-defmodule RecumapWeb.HouseApiController do
+defmodule RecumapWeb.API.HouseApiController do
   use RecumapWeb, :controller
 
   alias Recumap.Houses

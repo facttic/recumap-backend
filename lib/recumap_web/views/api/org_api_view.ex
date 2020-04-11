@@ -1,6 +1,6 @@
-defmodule RecumapWeb.OrgApiView do
+defmodule RecumapWeb.API.OrgApiView do
   use RecumapWeb, :view
-  alias RecumapWeb.OrgApiView
+  alias RecumapWeb.API.OrgApiView
 
   def render("index.json", %{orgs: orgs}) do
     %{data: render_many(orgs, OrgApiView, "org.json")}

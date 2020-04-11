@@ -1,6 +1,6 @@
-defmodule RecumapWeb.HouseApiView do
+defmodule RecumapWeb.API.HouseApiView do
   use RecumapWeb, :view
-  alias RecumapWeb.HouseApiView
+  alias RecumapWeb.API.HouseApiView
 
   def render("index.json", %{houses: houses}) do
     %{data: render_many(houses, HouseApiView, "house.json")}

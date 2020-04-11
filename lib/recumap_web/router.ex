@@ -50,13 +50,13 @@ defmodule RecumapWeb.Router do
     resources "/session", SessionController, singleton: true, only: [:create, :delete]
     post "/session/renew", SessionController, :renew
     options "/session", SessionController, :options
+    resources "/orgs", OrgApiController
   end
 
-  scope "/api", RecumapWeb do
+  scope "/api", RecumapWeb.API do
     pipe_through [:api, :api_protected]
 
     resources "/resources", ResourceApiController
-    resources "/orgs", OrgApiController
     resources "/houses", HouseApiController
 
   end

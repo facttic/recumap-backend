@@ -1,7 +1,7 @@
 
-defmodule RecumapWeb.ResourceApiView do
+defmodule RecumapWeb.API.ResourceApiView do
   use RecumapWeb, :view
-  alias RecumapWeb.ResourceApiView
+  alias RecumapWeb.API.ResourceApiView
 
   def render("index.json", %{resources: resources}) do
     %{data: render_many(resources, ResourceApiView, "resource.json")}

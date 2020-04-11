@@ -1,4 +1,4 @@
-defmodule RecumapWeb.OrgApiController do
+defmodule RecumapWeb.API.OrgApiController do
   use RecumapWeb, :controller
 
   alias Recumap.Orgs
@@ -8,11 +8,25 @@ defmodule RecumapWeb.OrgApiController do
 
   @spec index(Plug.Conn.t(), map) :: Plug.Conn.t()
   def index(conn, params) do
-    case Orgs.paginate_orgs(params) do
-      {:ok, assigns} ->
-        render(conn, "index.json", orgs: assigns.orgs)
+    config = Pow.Plug.fetch_config(conn)
+    paginate_params =
+      case Pow.Plug.current_user(conn, config) do
+        nil ->
+          case Map.get(params, "org") do
+            nil -> %{"org" => %{"public" => true}}
+            %{} ->
+              put_in(params, ["org", "public"], true)
+          end
       _ ->
-        render_status(conn, 500)
+        IO.puts("LOGUEADO!")
+        params
+      end      
+      
+      case Orgs.paginate_orgs(paginate_params) do
+        {:ok, assigns} ->
+          render(conn, "index.json", orgs: assigns.orgs)
+        _ ->
+          render_status(conn, 500)
       end
   end
 

@@ -1,4 +1,4 @@
-defmodule RecumapWeb.ResourceApiController do
+defmodule RecumapWeb.API.ResourceApiController do
   use RecumapWeb, :controller
 
   alias Recumap.Resources
