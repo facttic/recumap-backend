@@ -44,7 +44,8 @@ defmodule Recumap.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:torch, "~> 3.0"},
-      {:pow, "~> 1.0.19"}
+      {:pow, "~> 1.0.19"},
+      {:cors_plug, "~> 1.5"}
     ]
   end
 
