@@ -53,7 +53,7 @@ defmodule RecumapWeb.Router do
   end
 
   scope "/api", RecumapWeb do
-    pipe_through [:api]
+    pipe_through [:api, :api_protected]
 
     get "/resources", ResourceApiController, :index
     resources "/orgs", OrgApiController
