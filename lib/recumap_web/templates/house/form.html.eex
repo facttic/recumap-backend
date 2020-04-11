@@ -1,0 +1,134 @@
+<%= form_for @changeset, @action, [multipart: true, id: "torch-form"], fn f -> %>
+  <fieldset class="torch-panel">
+    <legend>
+      <span>Details</span>
+    </legend>
+    <%= if @changeset.action do %>
+      <p class="torch-form-error">Oops, something went wrong! Please check the errors below.</p>
+    <% end %>
+  
+    <div class="torch-form-group">
+      <%= label f, :responsible_name %>
+      <%= text_input f, :responsible_name %>
+      <%= error_tag f, :responsible_name %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :responsible_surname %>
+      <%= text_input f, :responsible_surname %>
+      <%= error_tag f, :responsible_surname %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :responsible_dni %>
+      <%= text_input f, :responsible_dni %>
+      <%= error_tag f, :responsible_dni %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :responsible_phone %>
+      <%= text_input f, :responsible_phone %>
+      <%= error_tag f, :responsible_phone %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :address_street %>
+      <%= text_input f, :address_street %>
+      <%= error_tag f, :address_street %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :address_number %>
+      <%= number_input f, :address_number %>
+      <%= error_tag f, :address_number %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :address_between_streets %>
+      <%= text_input f, :address_between_streets %>
+      <%= error_tag f, :address_between_streets %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :address_neighborhood %>
+      <%= text_input f, :address_neighborhood %>
+      <%= error_tag f, :address_neighborhood %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :address_locality %>
+      <%= text_input f, :address_locality %>
+      <%= error_tag f, :address_locality %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :demographics %>
+      <%= text_input f, :demographics %>
+      <%= error_tag f, :demographics %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :number_of_members %>
+      <%= number_input f, :number_of_members %>
+      <%= error_tag f, :number_of_members %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :number_of_minor_members %>
+      <%= number_input f, :number_of_minor_members %>
+      <%= error_tag f, :number_of_minor_members %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :number_of_older_members %>
+      <%= number_input f, :number_of_older_members %>
+      <%= error_tag f, :number_of_older_members %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :healh_issues %>
+      <%= checkbox f, :healh_issues %>
+      <%= error_tag f, :healh_issues %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :earnings_formal_economy %>
+      <%= checkbox f, :earnings_formal_economy %>
+      <%= error_tag f, :earnings_formal_economy %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :earnings_affected_isolation %>
+      <%= checkbox f, :earnings_affected_isolation %>
+      <%= error_tag f, :earnings_affected_isolation %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :benefited_by_social_plan %>
+      <%= checkbox f, :benefited_by_social_plan %>
+      <%= error_tag f, :benefited_by_social_plan %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :family_emergency_plan %>
+      <%= checkbox f, :family_emergency_plan %>
+      <%= error_tag f, :family_emergency_plan %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :food_help %>
+      <%= checkbox f, :food_help %>
+      <%= error_tag f, :food_help %>
+    </div>
+  
+    <div class="torch-form-group">
+      <%= label f, :attends_community_dining_room %>
+      <%= checkbox f, :attends_community_dining_room %>
+      <%= error_tag f, :attends_community_dining_room %>
+    </div>
+  
+    <div class="torch-submit-form">
+      <%= submit "Submit", class: "torch-submit-button" %>
+    </div>
+  </fieldset>
+<% end %>

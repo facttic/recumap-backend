@@ -39,6 +39,9 @@
           <nav class="torch-nav">
             <a href="/orgs">Orgs</a>
           </nav>
+          <nav class="torch-nav">
+            <a href="/houses">Houses</a>
+          </nav>
         </div>
       </section>
     </header>

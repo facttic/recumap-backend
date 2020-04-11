@@ -39,6 +39,7 @@ defmodule RecumapWeb.Router do
     resources "/resource_types", ResourceTypeController
     resources "/resources", ResourceController
     resources "/orgs", OrgController
+    resources "/houses", HouseController
   end
 
   scope "/api", RecumapWeb.API do
@@ -54,5 +55,7 @@ defmodule RecumapWeb.Router do
 
     get "/resources", ResourceApiController, :index
     resources "/orgs", OrgApiController
+    resources "/houses", HouseApiController
+
   end
 end
