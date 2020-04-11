@@ -11,32 +11,38 @@
       <h3>Org Details</h3>
     </div>
     <ul>
-      
+
         <li>
           <div class="torch-show-label">Name:</div>
           <div class="torch-show-data"><%= @org.name %></div>
         </li>
-      
+
         <li>
           <div class="torch-show-label">Description:</div>
           <div class="torch-show-data"><%= @org.description %></div>
         </li>
-      
+
         <li>
           <div class="torch-show-label">Address:</div>
           <div class="torch-show-data"><%= @org.address %></div>
         </li>
-      
+
         <li>
-          <div class="torch-show-label">Demographics:</div>
-          <div class="torch-show-data"><%= @org.demographics %></div>
+          <div class="torch-show-label">Lat:</div>
+          <div class="torch-show-data"><%= @org.lat %></div>
         </li>
-      
+        </li>
+
+        <li>
+          <div class="torch-show-label">Long:</div>
+          <div class="torch-show-data"><%= @org.long %></div>
+        </li>
+
         <li>
           <div class="torch-show-label">Public:</div>
           <div class="torch-show-data"><%= @org.public %></div>
         </li>
-      
+
     </ul>
   </div>
 </section>

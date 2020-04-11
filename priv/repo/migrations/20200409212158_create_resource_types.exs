@@ -10,6 +10,7 @@ defmodule Recumap.Repo.Migrations.CreateResourceTypes do
       timestamps()
     end
 
+    create unique_index(:resource_types, [:name])
     create index(:resource_types, [:user_id])
   end
 end

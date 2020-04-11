@@ -15,7 +15,8 @@ defmodule RecumapWeb.OrgApiView do
       name: org.name,
       description: org.description,
       address: org.address,
-      demographics: org.demographics,
+      lat: org.lat,
+      long: org.long,
       public: org.public}
   end
 end

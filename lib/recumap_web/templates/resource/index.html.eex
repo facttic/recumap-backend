@@ -8,28 +8,82 @@
     <section id="torch-filters">
       <h3>Find Resources</h3>
       <%= form_tag @conn.request_path, method: :get, id: "torch-filters-form" do %>
-        
+
+          <div class="field">
+            <label>Responsible name</label>
+            <%= filter_select(:resource, :responsible_name, @conn.params) %>
+            <%= filter_string_input(:resource, :responsible_name, @conn.params) %>
+          </div>
+
+          <div class="field">
+            <label>Responsible surname</label>
+            <%= filter_select(:resource, :responsible_surname, @conn.params) %>
+            <%= filter_string_input(:resource, :responsible_surname, @conn.params) %>
+          </div>
+
+          <div class="field">
+            <label>Responsible dni</label>
+            <%= filter_select(:resource, :responsible_dni, @conn.params) %>
+            <%= filter_string_input(:resource, :responsible_dni, @conn.params) %>
+          </div>
+
+          <div class="field">
+            <label>Responsible phone</label>
+            <%= filter_select(:resource, :responsible_phone, @conn.params) %>
+            <%= filter_string_input(:resource, :responsible_phone, @conn.params) %>
+          </div>
+
+          <div class="field">
+            <label>Address street</label>
+            <%= filter_select(:resource, :address_street, @conn.params) %>
+            <%= filter_string_input(:resource, :address_street, @conn.params) %>
+          </div>
+
+          <div class="field">
+            <label>Address between streets</label>
+            <%= filter_select(:resource, :address_between_streets, @conn.params) %>
+            <%= filter_string_input(:resource, :address_between_streets, @conn.params) %>
+          </div>
+
+          <div class="field">
+            <label>Address neighborhood</label>
+            <%= filter_select(:resource, :address_neighborhood, @conn.params) %>
+            <%= filter_string_input(:resource, :address_neighborhood, @conn.params) %>
+          </div>
+
+          <div class="field">
+            <label>Address locality</label>
+            <%= filter_select(:resource, :address_locality, @conn.params) %>
+            <%= filter_string_input(:resource, :address_locality, @conn.params) %>
+          </div>
+
           <div class="field">
             <label>Name</label>
             <%= filter_select(:resource, :name, @conn.params) %>
             <%= filter_string_input(:resource, :name, @conn.params) %>
           </div>
-        
+
           <div class="field">
-            <label>Demographics</label>
-            <%= filter_select(:resource, :demographics, @conn.params) %>
-            <%= filter_string_input(:resource, :demographics, @conn.params) %>
+            <label>Lat</label>
+            <%= number_filter_select(:resource, :lat, @conn.params) %>
+            <%= filter_number_input(:resource, :lat, @conn.params) %>
           </div>
-        
+
+          <div class="field">
+            <label>Long</label>
+            <%= number_filter_select(:resource, :long, @conn.params) %>
+            <%= filter_number_input(:resource, :long, @conn.params) %>
+          </div>
+
           <div class="field">
             <label>Details</label>
             <%= filter_select(:resource, :details, @conn.params) %>
             <%= filter_text_input(:resource, :details, @conn.params) %>
           </div>
-        
-        
-        
-        
+
+
+
+
         <button type="submit" class="torch-button">Search</button>
         <%= link "Clear Filters", to: Routes.resource_path(@conn, :index) %>
       <% end %>
@@ -41,26 +95,66 @@
       <table>
         <thead>
           <tr>
-            
+
               <th><%= table_link(@conn, "Name", :name) %></th>
-            
-              <th><%= table_link(@conn, "Demographics", :demographics) %></th>
-            
+
+              <th><%= table_link(@conn, "Responsible name", :responsible_name) %></th>
+
+              <th><%= table_link(@conn, "Responsible surname", :responsible_surname) %></th>
+
+              <th><%= table_link(@conn, "Responsible dni", :responsible_dni) %></th>
+
+              <th><%= table_link(@conn, "Responsible phone", :responsible_phone) %></th>
+
+              <th><%= table_link(@conn, "Address street", :address_street) %></th>
+
+              <th><%= table_link(@conn, "Address number", :address_number) %></th>
+
+              <th><%= table_link(@conn, "Address between streets", :address_between_streets) %></th>
+
+              <th><%= table_link(@conn, "Address neighborhood", :address_neighborhood) %></th>
+
+              <th><%= table_link(@conn, "Address locality", :address_locality) %></th>
+
+              <th><%= table_link(@conn, "Lat", :lat) %></th>
+
+              <th><%= table_link(@conn, "Long", :long) %></th>
+
               <th><%= table_link(@conn, "Details", :details) %></th>
-            
+
             <th><span>Actions</span></th>
           </tr>
         </thead>
         <tbody>
           <%= for resource <- @resources do %>
             <tr>
-              
+
                 <td><%= resource.name %></td>
-              
-                <td><%= resource.demographics %></td>
-              
+
+                <td><%= resource.responsible_name %></td>
+
+                <td><%= resource.responsible_surname %></td>
+
+                <td><%= resource.responsible_dni %></td>
+
+                <td><%= resource.responsible_phone %></td>
+
+                <td><%= resource.address_street %></td>
+
+                <td><%= resource.address_number %></td>
+
+                <td><%= resource.address_between_streets %></td>
+
+                <td><%= resource.address_neighborhood %></td>
+
+                <td><%= resource.address_locality %></td>
+
+                <td><%= resource.lat %></td>
+
+                <td><%= resource.long %></td>
+
                 <td><%= resource.details %></td>
-              
+
               <td class="torch-actions">
                 <span><%= link "Show", to: Routes.resource_path(@conn, :show, resource) %></span>
                 <span><%= link "Edit", to: Routes.resource_path(@conn, :edit, resource) %></span>

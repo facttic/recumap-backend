@@ -8,123 +8,129 @@
     <section id="torch-filters">
       <h3>Find Houses</h3>
       <%= form_tag @conn.request_path, method: :get, id: "torch-filters-form" do %>
-        
+
           <div class="field">
             <label>Responsible name</label>
             <%= filter_select(:house, :responsible_name, @conn.params) %>
             <%= filter_string_input(:house, :responsible_name, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Responsible surname</label>
             <%= filter_select(:house, :responsible_surname, @conn.params) %>
             <%= filter_string_input(:house, :responsible_surname, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Responsible dni</label>
             <%= filter_select(:house, :responsible_dni, @conn.params) %>
             <%= filter_string_input(:house, :responsible_dni, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Responsible phone</label>
             <%= filter_select(:house, :responsible_phone, @conn.params) %>
             <%= filter_string_input(:house, :responsible_phone, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Address street</label>
             <%= filter_select(:house, :address_street, @conn.params) %>
             <%= filter_string_input(:house, :address_street, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Address between streets</label>
             <%= filter_select(:house, :address_between_streets, @conn.params) %>
             <%= filter_string_input(:house, :address_between_streets, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Address neighborhood</label>
             <%= filter_select(:house, :address_neighborhood, @conn.params) %>
             <%= filter_string_input(:house, :address_neighborhood, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Address locality</label>
             <%= filter_select(:house, :address_locality, @conn.params) %>
             <%= filter_string_input(:house, :address_locality, @conn.params) %>
           </div>
-        
+
           <div class="field">
-            <label>Demographics</label>
-            <%= filter_select(:house, :demographics, @conn.params) %>
-            <%= filter_string_input(:house, :demographics, @conn.params) %>
+            <label>Name</label>
+            <%= filter_select(:house, :name, @conn.params) %>
+            <%= filter_string_input(:house, :name, @conn.params) %>
           </div>
-        
-        
+
+          <div class="field">
+            <label>Lat</label>
+            <%= number_filter_select(:house, :lat, @conn.params) %>
+            <%= filter_number_input(:house, :lat, @conn.params) %>
+          </div>
+
+
           <div class="field">
             <label>Healh issues</label>
             <%= filter_boolean_input(:house, :healh_issues, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Earnings formal economy</label>
             <%= filter_boolean_input(:house, :earnings_formal_economy, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Earnings affected isolation</label>
             <%= filter_boolean_input(:house, :earnings_affected_isolation, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Benefited by social plan</label>
             <%= filter_boolean_input(:house, :benefited_by_social_plan, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Family emergency plan</label>
             <%= filter_boolean_input(:house, :family_emergency_plan, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Food help</label>
             <%= filter_boolean_input(:house, :food_help, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Attends community dining room</label>
             <%= filter_boolean_input(:house, :attends_community_dining_room, @conn.params) %>
           </div>
-        
-        
-        
+
+
+
           <div class="field">
             <label>Address number</label>
             <%= number_filter_select(:house, :address_number, @conn.params) %>
             <%= filter_number_input(:house, :address_number, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Number of members</label>
             <%= number_filter_select(:house, :number_of_members, @conn.params) %>
             <%= filter_number_input(:house, :number_of_members, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Number of minor members</label>
             <%= number_filter_select(:house, :number_of_minor_members, @conn.params) %>
             <%= filter_number_input(:house, :number_of_minor_members, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Number of older members</label>
             <%= number_filter_select(:house, :number_of_older_members, @conn.params) %>
             <%= filter_number_input(:house, :number_of_older_members, @conn.params) %>
           </div>
-        
+
         <button type="submit" class="torch-button">Search</button>
         <%= link "Clear Filters", to: Routes.house_path(@conn, :index) %>
       <% end %>
@@ -136,94 +142,98 @@
       <table>
         <thead>
           <tr>
-            
+
               <th><%= table_link(@conn, "Responsible name", :responsible_name) %></th>
-            
+
               <th><%= table_link(@conn, "Responsible surname", :responsible_surname) %></th>
-            
+
               <th><%= table_link(@conn, "Responsible dni", :responsible_dni) %></th>
-            
+
               <th><%= table_link(@conn, "Responsible phone", :responsible_phone) %></th>
-            
+
               <th><%= table_link(@conn, "Address street", :address_street) %></th>
-            
+
               <th><%= table_link(@conn, "Address number", :address_number) %></th>
-            
+
               <th><%= table_link(@conn, "Address between streets", :address_between_streets) %></th>
-            
+
               <th><%= table_link(@conn, "Address neighborhood", :address_neighborhood) %></th>
-            
+
               <th><%= table_link(@conn, "Address locality", :address_locality) %></th>
-            
-              <th><%= table_link(@conn, "Demographics", :demographics) %></th>
-            
+
+              <th><%= table_link(@conn, "Lat", :lat) %></th>
+
+              <th><%= table_link(@conn, "Long", :long) %></th>
+
               <th><%= table_link(@conn, "Number of members", :number_of_members) %></th>
-            
+
               <th><%= table_link(@conn, "Number of minor members", :number_of_minor_members) %></th>
-            
+
               <th><%= table_link(@conn, "Number of older members", :number_of_older_members) %></th>
-            
+
               <th><%= table_link(@conn, "Healh issues", :healh_issues) %></th>
-            
+
               <th><%= table_link(@conn, "Earnings formal economy", :earnings_formal_economy) %></th>
-            
+
               <th><%= table_link(@conn, "Earnings affected isolation", :earnings_affected_isolation) %></th>
-            
+
               <th><%= table_link(@conn, "Benefited by social plan", :benefited_by_social_plan) %></th>
-            
+
               <th><%= table_link(@conn, "Family emergency plan", :family_emergency_plan) %></th>
-            
+
               <th><%= table_link(@conn, "Food help", :food_help) %></th>
-            
+
               <th><%= table_link(@conn, "Attends community dining room", :attends_community_dining_room) %></th>
-            
+
             <th><span>Actions</span></th>
           </tr>
         </thead>
         <tbody>
           <%= for house <- @houses do %>
             <tr>
-              
+
                 <td><%= house.responsible_name %></td>
-              
+
                 <td><%= house.responsible_surname %></td>
-              
+
                 <td><%= house.responsible_dni %></td>
-              
+
                 <td><%= house.responsible_phone %></td>
-              
+
                 <td><%= house.address_street %></td>
-              
+
                 <td><%= house.address_number %></td>
-              
+
                 <td><%= house.address_between_streets %></td>
-              
+
                 <td><%= house.address_neighborhood %></td>
-              
+
                 <td><%= house.address_locality %></td>
-              
-                <td><%= house.demographics %></td>
-              
+
+                <td><%= house.lat %></td>
+
+                <td><%= house.long %></td>
+
                 <td><%= house.number_of_members %></td>
-              
+
                 <td><%= house.number_of_minor_members %></td>
-              
+
                 <td><%= house.number_of_older_members %></td>
-              
+
                 <td><%= house.healh_issues %></td>
-              
+
                 <td><%= house.earnings_formal_economy %></td>
-              
+
                 <td><%= house.earnings_affected_isolation %></td>
-              
+
                 <td><%= house.benefited_by_social_plan %></td>
-              
+
                 <td><%= house.family_emergency_plan %></td>
-              
+
                 <td><%= house.food_help %></td>
-              
+
                 <td><%= house.attends_community_dining_room %></td>
-              
+
               <td class="torch-actions">
                 <span><%= link "Show", to: Routes.house_path(@conn, :show, house) %></span>
                 <span><%= link "Edit", to: Routes.house_path(@conn, :edit, house) %></span>

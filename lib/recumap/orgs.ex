@@ -158,9 +158,10 @@ defp filter_config(:orgs) do
     text :name
       text :description
       text :address
-      text :demographics
+      number :lat
+      number :long
       boolean :public
-      
+      number :user_id
   end
 end
 end

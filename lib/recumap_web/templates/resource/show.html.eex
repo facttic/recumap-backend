@@ -11,22 +11,73 @@
       <h3>Resource Details</h3>
     </div>
     <ul>
-      
+
         <li>
           <div class="torch-show-label">Name:</div>
           <div class="torch-show-data"><%= @resource.name %></div>
         </li>
-      
+
         <li>
-          <div class="torch-show-label">Demographics:</div>
-          <div class="torch-show-data"><%= @resource.demographics %></div>
+          <div class="torch-show-label">Responsible name:</div>
+          <div class="torch-show-data"><%= @resource.responsible_name %></div>
         </li>
-      
+
+        <li>
+          <div class="torch-show-label">Responsible surname:</div>
+          <div class="torch-show-data"><%= @resource.responsible_surname %></div>
+        </li>
+
+        <li>
+          <div class="torch-show-label">Responsible dni:</div>
+          <div class="torch-show-data"><%= @resource.responsible_dni %></div>
+        </li>
+
+        <li>
+          <div class="torch-show-label">Responsible phone:</div>
+          <div class="torch-show-data"><%= @resource.responsible_phone %></div>
+        </li>
+
+        <li>
+          <div class="torch-show-label">Address street:</div>
+          <div class="torch-show-data"><%= @resource.address_street %></div>
+        </li>
+
+        <li>
+          <div class="torch-show-label">Address number:</div>
+          <div class="torch-show-data"><%= @resource.address_number %></div>
+        </li>
+
+        <li>
+          <div class="torch-show-label">Address between streets:</div>
+          <div class="torch-show-data"><%= @resource.address_between_streets %></div>
+        </li>
+
+        <li>
+          <div class="torch-show-label">Address neighborhood:</div>
+          <div class="torch-show-data"><%= @resource.address_neighborhood %></div>
+        </li>
+
+        <li>
+          <div class="torch-show-label">Address locality:</div>
+          <div class="torch-show-data"><%= @resource.address_locality %></div>
+        </li>
+
+        <li>
+          <div class="torch-show-label">Lat:</div>
+          <div class="torch-show-data"><%= @resource.lat %></div>
+        </li>
+        </li>
+
+        <li>
+          <div class="torch-show-label">Long:</div>
+          <div class="torch-show-data"><%= @resource.long %></div>
+        </li>
+
         <li>
           <div class="torch-show-label">Details:</div>
           <div class="torch-show-data"><%= @resource.details %></div>
         </li>
-      
+
     </ul>
   </div>
 </section>

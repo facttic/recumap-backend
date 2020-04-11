@@ -157,7 +157,7 @@ defp filter_config(:resource_types) do
   defconfig do
     text :name
       text :description
-      
+
   end
 end
 import Torch.Helpers, only: [sort: 1, paginate: 4]
@@ -311,9 +311,19 @@ end
 defp filter_config(:resources) do
   defconfig do
     text :name
-      text :demographics
-      text :details
-      
+    text :responsible_name
+    text :responsible_surname
+    text :responsible_dni
+    text :responsible_phone
+    text :address_street
+    number :address_number
+    text :address_between_streets
+    text :address_neighborhood
+    text :address_locality
+    number :lat
+    number :long
+    text :details
+    number :user_id
   end
 end
 end

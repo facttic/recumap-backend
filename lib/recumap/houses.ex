@@ -156,26 +156,27 @@ end
 defp filter_config(:houses) do
   defconfig do
     text :responsible_name
-      text :responsible_surname
-      text :responsible_dni
-      text :responsible_phone
-      text :address_street
-      number :address_number
-      text :address_between_streets
-      text :address_neighborhood
-      text :address_locality
-      text :demographics
-      number :number_of_members
-      number :number_of_minor_members
-      number :number_of_older_members
-      boolean :healh_issues
-      boolean :earnings_formal_economy
-      boolean :earnings_affected_isolation
-      boolean :benefited_by_social_plan
-      boolean :family_emergency_plan
-      boolean :food_help
-      boolean :attends_community_dining_room
-      number :org_id
+    text :responsible_surname
+    text :responsible_dni
+    text :responsible_phone
+    text :address_street
+    number :address_number
+    text :address_between_streets
+    text :address_neighborhood
+    text :address_locality
+    number :lat
+    number :long
+    number :number_of_members
+    number :number_of_minor_members
+    number :number_of_older_members
+    boolean :healh_issues
+    boolean :earnings_formal_economy
+    boolean :earnings_affected_isolation
+    boolean :benefited_by_social_plan
+    boolean :family_emergency_plan
+    boolean :food_help
+    boolean :attends_community_dining_room
+    number :user_id
   end
 end
 end

@@ -12,7 +12,8 @@ defmodule Recumap.Repo.Migrations.CreateHouses do
       add :address_between_streets, :string
       add :address_neighborhood, :string
       add :address_locality, :string
-      add :demographics, :string
+      add :lat, :float
+      add :long, :float
       add :number_of_members, :integer
       add :number_of_minor_members, :integer
       add :number_of_older_members, :integer
@@ -23,11 +24,11 @@ defmodule Recumap.Repo.Migrations.CreateHouses do
       add :family_emergency_plan, :boolean, default: false, null: false
       add :food_help, :boolean, default: false, null: false
       add :attends_community_dining_room, :boolean, default: false, null: false
-      add :org_id, references(:orgs, on_delete: :nothing)
+      add :user_id, references(:users, on_delete: :nothing)
 
       timestamps()
     end
 
-    create index(:houses, [:org_id])
+    create index(:houses, [:user_id])
   end
 end

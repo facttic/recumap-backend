@@ -1,17 +1,73 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     Recumap.Repo.insert!(%Recumap.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
 alias Recumap.Accounts
+alias Recumap.Resources
+alias Recumap.Orgs
+alias Recumap.Houses
 
-Accounts.create_user(%{
-  email: "recumap@gmail.com",
-  name: "recumap"
+{:ok, user} =
+  Accounts.create_user(%{
+    name: "recumap",
+    email: "recumap@gmail.com",
+    password: "abcd1234",
+    password_confirmation: "abcd1234"
+  })
+
+Houses.create_house(%{
+  address_between_streets: "some address_between_streets",
+  address_locality: "some address_locality",
+  address_neighborhood: "some address_neighborhood",
+  address_number: 42,
+  address_street: "some address_street",
+  responsible_dni: "some responsible_dni",
+  responsible_name: "some responsible_name",
+  responsible_phone: "some responsible_phone",
+  responsible_surname: "some responsible_surname",
+  lat: -34.603722,
+  long: -58.381592,
+  attends_community_dining_room: true,
+  benefited_by_social_plan: true,
+  earnings_affected_isolation: true,
+  earnings_formal_economy: true,
+  family_emergency_plan: true,
+  food_help: true,
+  healh_issues: true,
+  number_of_members: 42,
+  number_of_minor_members: 42,
+  number_of_older_members: 42,
+  user_id: user.id
+})
+
+Orgs.create_org(%{
+  address: "some address",
+  lat: -34.603722,
+  long: -58.381592,
+  description: "some description",
+  name: "some name",
+  public: true,
+  user_id: user.id
+})
+
+{:ok, resource_type} =
+  Resources.create_resource_type(%{
+    description: "some description",
+    name: "some name",
+    user_id: user.id
+  })
+
+{:ok, resource} = Resources.create_resource(%{
+  description: "some description",
+  name: "some name",
+  details: "some details",
+  address_between_streets: "some address_between_streets",
+  address_locality: "some address_locality",
+  address_neighborhood: "some address_neighborhood",
+  address_number: 42,
+  address_street: "some address_street",
+  responsible_dni: "some responsible_dni",
+  responsible_name: "some responsible_name",
+  responsible_phone: "some responsible_phone",
+  responsible_surname: "some responsible_surname",
+  lat: -34.603722,
+  long: -58.381592,
+  resource_type_id: resource_type.id,
+  user_id: user.id
 })

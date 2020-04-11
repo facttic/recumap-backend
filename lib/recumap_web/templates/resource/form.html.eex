@@ -6,25 +6,85 @@
     <%= if @changeset.action do %>
       <p class="torch-form-error">Oops, something went wrong! Please check the errors below.</p>
     <% end %>
-  
+
+    <div class="torch-form-group">
+      <%= label f, :responsible_name %>
+      <%= text_input f, :responsible_name %>
+      <%= error_tag f, :responsible_name %>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :responsible_surname %>
+      <%= text_input f, :responsible_surname %>
+      <%= error_tag f, :responsible_surname %>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :responsible_dni %>
+      <%= text_input f, :responsible_dni %>
+      <%= error_tag f, :responsible_dni %>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :responsible_phone %>
+      <%= text_input f, :responsible_phone %>
+      <%= error_tag f, :responsible_phone %>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :address_street %>
+      <%= text_input f, :address_street %>
+      <%= error_tag f, :address_street %>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :address_number %>
+      <%= number_input f, :address_number %>
+      <%= error_tag f, :address_number %>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :address_between_streets %>
+      <%= text_input f, :address_between_streets %>
+      <%= error_tag f, :address_between_streets %>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :address_neighborhood %>
+      <%= text_input f, :address_neighborhood %>
+      <%= error_tag f, :address_neighborhood %>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :address_locality %>
+      <%= text_input f, :address_locality %>
+      <%= error_tag f, :address_locality %>
+    </div>
+
     <div class="torch-form-group">
       <%= label f, :name %>
       <%= text_input f, :name %>
       <%= error_tag f, :name %>
     </div>
-  
+
     <div class="torch-form-group">
-      <%= label f, :demographics %>
-      <%= text_input f, :demographics %>
-      <%= error_tag f, :demographics %>
+      <%= label f, :lat %>
+      <%= number_input f, :lat %>
+      <%= error_tag f, :lat %>
     </div>
-  
+
+    <div class="torch-form-group">
+      <%= label f, :long %>
+      <%= number_input f, :long %>
+      <%= error_tag f, :long %>
+    </div>
+
     <div class="torch-form-group">
       <%= label f, :details %>
       <%= textarea f, :details %>
       <%= error_tag f, :details %>
     </div>
-  
+
     <div class="torch-submit-form">
       <%= submit "Submit", class: "torch-submit-button" %>
     </div>

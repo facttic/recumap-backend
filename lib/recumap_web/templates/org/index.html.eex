@@ -8,39 +8,45 @@
     <section id="torch-filters">
       <h3>Find Orgs</h3>
       <%= form_tag @conn.request_path, method: :get, id: "torch-filters-form" do %>
-        
+
           <div class="field">
             <label>Name</label>
             <%= filter_select(:org, :name, @conn.params) %>
             <%= filter_string_input(:org, :name, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Description</label>
             <%= filter_select(:org, :description, @conn.params) %>
             <%= filter_string_input(:org, :description, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Address</label>
             <%= filter_select(:org, :address, @conn.params) %>
             <%= filter_string_input(:org, :address, @conn.params) %>
           </div>
-        
+
           <div class="field">
-            <label>Demographics</label>
-            <%= filter_select(:org, :demographics, @conn.params) %>
-            <%= filter_string_input(:org, :demographics, @conn.params) %>
+            <label>Name</label>
+            <%= filter_select(:org, :name, @conn.params) %>
+            <%= filter_string_input(:org, :name, @conn.params) %>
           </div>
-        
-        
+
+          <div class="field">
+            <label>Lat</label>
+            <%= number_filter_select(:org, :lat, @conn.params) %>
+            <%= filter_number_input(:org, :lat, @conn.params) %>
+          </div>
+
+
           <div class="field">
             <label>Public</label>
             <%= filter_boolean_input(:org, :public, @conn.params) %>
           </div>
-        
-        
-        
+
+
+
         <button type="submit" class="torch-button">Search</button>
         <%= link "Clear Filters", to: Routes.org_path(@conn, :index) %>
       <% end %>
@@ -52,34 +58,38 @@
       <table>
         <thead>
           <tr>
-            
+
               <th><%= table_link(@conn, "Name", :name) %></th>
-            
+
               <th><%= table_link(@conn, "Description", :description) %></th>
-            
+
               <th><%= table_link(@conn, "Address", :address) %></th>
-            
-              <th><%= table_link(@conn, "Demographics", :demographics) %></th>
-            
+
+              <th><%= table_link(@conn, "Lat", :lat) %></th>
+
+              <th><%= table_link(@conn, "Long", :long) %></th>
+
               <th><%= table_link(@conn, "Public", :public) %></th>
-            
+
             <th><span>Actions</span></th>
           </tr>
         </thead>
         <tbody>
           <%= for org <- @orgs do %>
             <tr>
-              
+
                 <td><%= org.name %></td>
-              
+
                 <td><%= org.description %></td>
-              
+
                 <td><%= org.address %></td>
-              
-                <td><%= org.demographics %></td>
-              
+
+                <td><%= org.lat %></td>
+
+                <td><%= org.long %></td>
+
                 <td><%= org.public %></td>
-              
+
               <td class="torch-actions">
                 <span><%= link "Show", to: Routes.org_path(@conn, :show, org) %></span>
                 <span><%= link "Edit", to: Routes.org_path(@conn, :edit, org) %></span>

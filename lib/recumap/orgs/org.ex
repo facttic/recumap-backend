@@ -4,7 +4,8 @@ defmodule Recumap.Orgs.Org do
 
   schema "orgs" do
     field :address, :string
-    field :demographics, :string
+    field :lat, :float
+    field :long, :float
     field :description, :string
     field :name, :string
     field :public, :boolean, default: false
@@ -16,7 +17,7 @@ defmodule Recumap.Orgs.Org do
   @doc false
   def changeset(org, attrs) do
     org
-    |> cast(attrs, [:name, :description, :address, :demographics, :public])
-    |> validate_required([:name, :description, :address, :demographics, :public])
+    |> cast(attrs, [:name, :description, :address, :lat, :long, :public])
+    |> validate_required([:name, :description, :address, :lat, :long, :public])
   end
 end
