@@ -2,13 +2,11 @@ defmodule RecumapWeb.Router do
   use RecumapWeb, :router
   use Pow.Phoenix.Router
 
-
-
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
-    #plug :protect_from_forgery
+    # plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
 
@@ -18,7 +16,7 @@ defmodule RecumapWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-    plug CORSPlug, [origin: "*"]
+    plug CORSPlug, origin: "*"
     plug RecumapWeb.APIAuthPlug, otp_app: :recumap
   end
 
@@ -55,7 +53,7 @@ defmodule RecumapWeb.Router do
     options "/orgs/:id", OrgApiController, :options
     resources "/resources", ResourceApiController
     options "/resources", ResourceApiController, :options
-    options   "/resources/:id", ResourceApiController, :options
+    options "/resources/:id", ResourceApiController, :options
   end
 
   scope "/api", RecumapWeb.API do
@@ -64,6 +62,5 @@ defmodule RecumapWeb.Router do
     resources "/houses", HouseApiController
     options "/houses", HouseApiController, :options
     options "/houses/:id", HouseApiController, :options
-
   end
 end
