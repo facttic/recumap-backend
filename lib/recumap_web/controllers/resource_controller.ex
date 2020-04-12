@@ -8,7 +8,20 @@ defmodule RecumapWeb.ResourceController do
   plug(:put_layout, {RecumapWeb.LayoutView, "torch.html"})
 
   def index(conn, params) do
-    case Resources.paginate_resources(params) do
+    config = Pow.Plug.fetch_config(conn)
+    paginate_params =
+      case Pow.Plug.current_user(conn, config) do
+        nil ->
+          params
+        user ->
+          case Map.get(params, "resource") do
+            nil -> %{"resource" => %{"user_id" => user.id}}
+            %{} ->
+              put_in(params, ["resource", "user_id"], user.id)
+          end
+      end
+
+    case Resources.paginate_resources(paginate_params) do
       {:ok, assigns} ->
         render(conn, "index.html", assigns)
       error ->

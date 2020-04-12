@@ -7,7 +7,15 @@ defmodule RecumapWeb.HouseController do
   plug(:put_layout, {RecumapWeb.LayoutView, "torch.html"})
 
   def index(conn, params) do
-    case Houses.paginate_houses(params) do
+    user = Pow.Plug.current_user(conn)
+    paginate_params =
+      case Map.get(params, "house") do
+        nil -> %{"house" => %{"user_id" => user.id}}
+        %{} ->
+          put_in(params, ["house", "user_id"], user.id)
+      end
+
+    case Houses.paginate_houses(paginate_params) do
       {:ok, assigns} ->
         render(conn, "index.html", assigns)
       error ->

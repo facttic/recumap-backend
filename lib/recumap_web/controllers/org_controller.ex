@@ -8,7 +8,15 @@ defmodule RecumapWeb.OrgController do
 
   @spec index(Plug.Conn.t(), map) :: Plug.Conn.t()
   def index(conn, params) do
-    case Orgs.paginate_orgs(params) do
+    user = Pow.Plug.current_user(conn)
+    paginate_params =
+      case Map.get(params, "org") do
+        nil -> %{"org" => %{"user_id" => user.id}}
+        %{} ->
+          put_in(params, ["org", "user_id"], user.id)
+      end
+
+    case Orgs.paginate_orgs(paginate_params) do
       {:ok, assigns} ->
         render(conn, "index.html", assigns)
       error ->
