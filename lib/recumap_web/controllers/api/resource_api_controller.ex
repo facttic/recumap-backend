@@ -31,7 +31,6 @@ defmodule RecumapWeb.API.ResourceApiController do
   end
 
   def create(conn, %{"resource" => resource_params}) do
-    IO.inspect resource_params
     user = Pow.Plug.current_user(conn)
     resource_type = Resources.get_resource_type!(resource_params["resource_type_id"])
 
