@@ -18,7 +18,7 @@ defmodule RecumapWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-    plug CORSPlug, [origin: "http://localhost:3000"]
+    plug CORSPlug, [origin: "*"]
     plug RecumapWeb.APIAuthPlug, otp_app: :recumap
   end
 
@@ -51,13 +51,19 @@ defmodule RecumapWeb.Router do
     post "/session/renew", SessionController, :renew
     options "/session", SessionController, :options
     resources "/orgs", OrgApiController
+    options "/orgs", OrgApiController, :options
+    options "/orgs/:id", OrgApiController, :options
     resources "/resources", ResourceApiController
+    options "/resources", ResourceApiController, :options
+    options   "/resources/:id", ResourceApiController, :options
   end
 
   scope "/api", RecumapWeb.API do
     pipe_through [:api, :api_protected]
 
     resources "/houses", HouseApiController
+    options "/houses", HouseApiController, :options
+    options "/houses/:id", HouseApiController, :options
 
   end
 end
