@@ -158,6 +158,7 @@ defp filter_config(:resource_types) do
   defconfig do
     text :name
       text :description
+      number :user_id
 
   end
 end
