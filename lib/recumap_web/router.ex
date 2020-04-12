@@ -51,12 +51,12 @@ defmodule RecumapWeb.Router do
     post "/session/renew", SessionController, :renew
     options "/session", SessionController, :options
     resources "/orgs", OrgApiController
+    resources "/resources", ResourceApiController
   end
 
   scope "/api", RecumapWeb.API do
     pipe_through [:api, :api_protected]
 
-    resources "/resources", ResourceApiController
     resources "/houses", HouseApiController
 
   end
