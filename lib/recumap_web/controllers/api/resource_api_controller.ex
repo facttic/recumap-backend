@@ -49,17 +49,31 @@ defmodule RecumapWeb.API.ResourceApiController do
 
   def update(conn, %{"id" => id, "resource" => resource_params}) do
     resource = Resources.get_resource!(id)
+    user = Pow.Plug.current_user(conn)
 
-    with {:ok, %Resource{} = resource} <- Resources.update_resource(resource, resource_params) do
-      render(conn, "show.json", resource: resource)
+    if resource.user_id == user.id do
+      with {:ok, %Resource{} = resource} <- Resources.update_resource(resource, resource_params) do
+        render(conn, "show.json", resource: resource)
+      end
+    else
+      conn
+        |> put_status(404)
+        |> json(%{error: %{code: 404, message: "Does not exist or does not belong to you"}})
     end
   end
 
   def delete(conn, %{"id" => id}) do
     resource = Resources.get_resource!(id)
+    user = Pow.Plug.current_user(conn)
 
-    with {:ok, %Resource{}} <- Resources.delete_resource(resource) do
-      send_resp(conn, :no_content, "")
+    if resource.user_id == user.id do
+      with {:ok, %Resource{}} <- Resources.delete_resource(resource) do
+        send_resp(conn, :no_content, "")
+      end
+    else
+      conn
+        |> put_status(404)
+        |> json(%{error: %{code: 404, message: "Does not exist or does not belong to you"}})
     end
   end
 end

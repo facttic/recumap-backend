@@ -44,18 +44,33 @@ defmodule RecumapWeb.API.HouseApiController do
   end
 
   def update(conn, %{"id" => id, "house" => house_params}) do
+    user = Pow.Plug.current_user(conn)
     house = Houses.get_house!(id)
 
-    with {:ok, %House{} = house} <- Houses.update_house(house, house_params) do
-      render(conn, "show.json", house: house)
+    if house.user_id == user.id do
+      with {:ok, %House{} = house} <- Houses.update_house(house, house_params) do
+        render(conn, "show.json", house: house)
+      end
+    else
+      conn
+        |> put_status(404)
+        |> json(%{error: %{code: 404, message: "Does not exist or does not belong to you"}})
     end
   end
 
   def delete(conn, %{"id" => id}) do
+    user = Pow.Plug.current_user(conn)
     house = Houses.get_house!(id)
 
-    with {:ok, %House{}} <- Houses.delete_house(house) do
-      send_resp(conn, :no_content, "")
+    if house.user_id == user.id do
+      with {:ok, %House{}} <- Houses.delete_house(house) do
+        send_resp(conn, :no_content, "")
+      end
+    else
+      conn
+        |> put_status(404)
+        |> json(%{error: %{code: 404, message: "Does not exist or does not belong to you"}})
     end
+    
   end
 end
