@@ -13,6 +13,7 @@ defmodule RecumapWeb.API.ResourceApiView do
 
   def render("resource.json", %{resource_api: resource}) do
     %{id: resource.id,
+      resource_type_id: resource.resource_type_id,
       responsible_name: resource.responsible_name,
       responsible_surname: resource.responsible_surname,
       responsible_dni: resource.responsible_dni,
