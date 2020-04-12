@@ -32,8 +32,9 @@ defmodule RecumapWeb.ResourceController do
   end
 
   def new(conn, _params) do
+    resource_types = Resources.list_resource_types()
     changeset = Resources.change_resource(%Resource{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, resource_types: resource_types)
   end
 
   def create(conn, %{"resource" => resource_params}) do
