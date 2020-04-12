@@ -9,6 +9,7 @@ import Torch.Helpers, only: [sort: 1, paginate: 4]
 import Filtrex.Type.Config
 
 alias Recumap.Orgs.Org
+alias Recumap.Accounts.User
 
 @pagination [page_size: 15]
 @pagination_distance 5
@@ -100,8 +101,9 @@ Creates a org.
     {:error, %Ecto.Changeset{}}
 
 """
-def create_org(attrs \\ %{}) do
-  %Org{}
+def create_org(%User{} = user, attrs \\ %{}) do
+  user
+  |> Ecto.build_assoc(:orgs)
   |> Org.changeset(attrs)
   |> Repo.insert()
 end

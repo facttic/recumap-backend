@@ -100,8 +100,9 @@ Creates a house.
     {:error, %Ecto.Changeset{}}
 
 """
-def create_house(attrs \\ %{}) do
-  %House{}
+def create_house(user, attrs \\ %{}) do
+  user
+  |> Ecto.build_assoc(:houses)
   |> House.changeset(attrs)
   |> Repo.insert()
 end

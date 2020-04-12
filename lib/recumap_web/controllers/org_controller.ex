@@ -24,7 +24,9 @@ defmodule RecumapWeb.OrgController do
   end
 
   def create(conn, %{"org" => org_params}) do
-    case Orgs.create_org(org_params) do
+    user = Pow.Plug.current_user(conn)
+
+    case Orgs.create_org(user, org_params) do
       {:ok, org} ->
         conn
         |> put_flash(:info, "Org created successfully.")

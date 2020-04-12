@@ -23,7 +23,9 @@ defmodule RecumapWeb.ResourceTypeController do
   end
 
   def create(conn, %{"resource_type" => resource_type_params}) do
-    case Resources.create_resource_type(resource_type_params) do
+    user = Pow.Plug.current_user(conn)
+
+    case Resources.create_resource_type(user, resource_type_params) do
       {:ok, resource_type} ->
         conn
         |> put_flash(:info, "Resource type created successfully.")

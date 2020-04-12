@@ -18,7 +18,11 @@ defmodule RecumapWeb.API.ResourceApiController do
   end
 
   def create(conn, %{"resource" => resource_params}) do
-    with {:ok, %Resource{} = resource} <- Resources.create_resource(resource_params) do
+    IO.inspect resource_params
+    user = Pow.Plug.current_user(conn)
+    resource_type = Resources.get_resource_type!(resource_params["resource_type_id"])
+
+    with {:ok, %Resource{} = resource} <- Resources.create_resource(user, resource_type, resource_params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.resource_path(conn, :show, resource))

@@ -24,7 +24,7 @@ defmodule Recumap.Houses.House do
     field :responsible_name, :string
     field :responsible_phone, :string
     field :responsible_surname, :string
-    field :user_id, :id
+    belongs_to :user, Recumap.Accounts.User
 
     timestamps()
   end

@@ -5,6 +5,10 @@ defmodule Recumap.Accounts.User do
   schema "users" do
     field :name, :string
     field :is_verified, :boolean, default: false
+    has_many :orgs, Recumap.Orgs.Org
+    has_many :houses, Recumap.Houses.House
+    has_many :resources, Recumap.Resources.Resource
+    has_many :resource_types, Recumap.Resources.ResourceType
 
     pow_user_fields()
     timestamps()

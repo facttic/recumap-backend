@@ -19,7 +19,9 @@ defmodule RecumapWeb.API.HouseApiController do
   end
 
   def create(conn, %{"house" => house_params}) do
-    with {:ok, %House{} = house} <- Houses.create_house(house_params) do
+    user = Pow.Plug.current_user(conn)
+
+    with {:ok, %House{} = house} <- Houses.create_house(user, house_params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.house_path(conn, :show, house))

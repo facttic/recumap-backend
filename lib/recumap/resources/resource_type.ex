@@ -5,7 +5,8 @@ defmodule Recumap.Resources.ResourceType do
   schema "resource_types" do
     field :description, :string
     field :name, :string
-    field :user_id, :id
+    belongs_to :user, Recumap.Accounts.User
+    has_many :resources, Recumap.Resources.Resource
 
     timestamps()
   end

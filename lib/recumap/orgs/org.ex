@@ -9,7 +9,7 @@ defmodule Recumap.Orgs.Org do
     field :description, :string
     field :name, :string
     field :public, :boolean, default: false
-    field :user_id, :id
+    belongs_to :user, Recumap.Accounts.User
 
     timestamps()
   end

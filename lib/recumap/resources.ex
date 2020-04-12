@@ -100,8 +100,9 @@ Creates a resource_type.
     {:error, %Ecto.Changeset{}}
 
 """
-def create_resource_type(attrs \\ %{}) do
-  %ResourceType{}
+def create_resource_type(user, attrs \\ %{}) do
+  user
+  |> Ecto.build_assoc(:resource_types)
   |> ResourceType.changeset(attrs)
   |> Repo.insert()
 end
@@ -255,8 +256,9 @@ Creates a resource.
     {:error, %Ecto.Changeset{}}
 
 """
-def create_resource(attrs \\ %{}) do
-  %Resource{}
+def create_resource(resource_type, user_id, attrs \\ %{}) do
+  resource_type
+  |> Ecto.build_assoc(:resources, user_id: user_id)
   |> Resource.changeset(attrs)
   |> Repo.insert()
 end
@@ -324,6 +326,7 @@ defp filter_config(:resources) do
     number :long
     text :details
     number :user_id
+    number :resource_type_id
   end
 end
 end

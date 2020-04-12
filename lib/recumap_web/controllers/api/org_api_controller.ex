@@ -32,7 +32,9 @@ defmodule RecumapWeb.API.OrgApiController do
   end
 
   def create(conn, %{"org" => org_params}) do
-    with {:ok, %Org{} = org} <- Orgs.create_org(org_params) do
+    user = Pow.Plug.current_user(conn)
+
+    with {:ok, %Org{} = org} <- Orgs.create_org(user, org_params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.org_path(conn, :show, org))

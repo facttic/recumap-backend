@@ -3,6 +3,7 @@ defmodule RecumapWeb.ResourceController do
 
   alias Recumap.Resources
   alias Recumap.Resources.Resource
+  alias Recumap.Resources.ResourceType
 
   plug(:put_layout, {RecumapWeb.LayoutView, "torch.html"})
 
@@ -23,7 +24,10 @@ defmodule RecumapWeb.ResourceController do
   end
 
   def create(conn, %{"resource" => resource_params}) do
-    case Resources.create_resource(resource_params) do
+    user = Pow.Plug.current_user(conn)
+    resource_type = Resources.get_resource_type!(resource_params.resource_type_id)
+
+    case Resources.create_resource(resource_type, user.id, resource_params) do
       {:ok, resource} ->
         conn
         |> put_flash(:info, "Resource created successfully.")

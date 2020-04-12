@@ -23,7 +23,9 @@ defmodule RecumapWeb.HouseController do
   end
 
   def create(conn, %{"house" => house_params}) do
-    case Houses.create_house(house_params) do
+    user = Pow.Plug.current_user(conn)
+
+    case Houses.create_house(user, house_params) do
       {:ok, house} ->
         conn
         |> put_flash(:info, "House created successfully.")
