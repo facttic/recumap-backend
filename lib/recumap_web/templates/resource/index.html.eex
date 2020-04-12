@@ -96,6 +96,8 @@
         <thead>
           <tr>
 
+              <th><%= table_link(@conn, "Resource Type", :resource_type) %></th>
+
               <th><%= table_link(@conn, "Name", :name) %></th>
 
               <th><%= table_link(@conn, "Responsible name", :responsible_name) %></th>
@@ -128,6 +130,8 @@
         <tbody>
           <%= for resource <- @resources do %>
             <tr>
+
+                <td><%= resource.resource_type.name %></td>
 
                 <td><%= resource.name %></td>
 

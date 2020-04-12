@@ -193,7 +193,7 @@ def paginate_resources(params \\ %{}) do
        %Scrivener.Page{} = page <- do_paginate_resources(filter, params) do
     {:ok,
       %{
-        resources: page.entries,
+        resources: page.entries |> Repo.preload(:resource_type),
         page_number: page.page_number,
         page_size: page.page_size,
         total_pages: page.total_pages,
