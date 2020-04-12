@@ -17,9 +17,15 @@ defmodule RecumapWeb.API.OrgApiController do
             %{} ->
               put_in(params, ["org", "public"], true)
           end
-      _ ->
-        params
+        user ->
+          case Map.get(params, "org") do
+            nil -> %{"org" => %{"user_id" => user.id}}
+            %{} ->
+              put_in(params, ["org", "user_id"], user.id)
+          end
       end
+
+      IO.inspect paginate_params
 
       case Orgs.paginate_orgs(paginate_params) do
         {:ok, assigns} ->
