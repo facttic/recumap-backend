@@ -8,7 +8,16 @@ defmodule RecumapWeb.API.HouseApiController do
 
   @spec index(Plug.Conn.t(), map) :: Plug.Conn.t()
   def index(conn, params) do
-    case Houses.paginate_houses(params) do
+    config = Pow.Plug.fetch_config(conn)
+    user = Pow.Plug.current_user(conn, config)
+    paginate_params = 
+      case Map.get(params, "org") do
+        nil -> %{"house" => %{"user_id" => user.id}}
+        %{} ->
+          put_in(params, ["house", "user_id"], user.id)
+      end
+
+    case Houses.paginate_houses(paginate_params) do
       {:ok, assigns} ->
         conn
         |> put_resp_header("X-Total-Count", Integer.to_string(assigns.total_entries))

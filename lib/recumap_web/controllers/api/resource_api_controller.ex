@@ -7,7 +7,20 @@ defmodule RecumapWeb.API.ResourceApiController do
   action_fallback RecumapWeb.FallbackController
 
   def index(conn, params) do
-    case Resources.paginate_resources(params) do
+    config = Pow.Plug.fetch_config(conn)
+    paginate_params =
+      case Pow.Plug.current_user(conn, config) do
+        nil ->
+          params
+        user ->
+          case Map.get(params, "resource") do
+            nil -> %{"resource" => %{"user_id" => user.id}}
+            %{} ->
+              put_in(params, ["resource", "user_id"], user.id)
+          end
+      end
+
+    case Resources.paginate_resources(paginate_params) do
       {:ok, assigns} ->
         conn
         |> put_resp_header("X-Total-Count", Integer.to_string(assigns.total_entries))
