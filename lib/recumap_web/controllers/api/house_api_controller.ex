@@ -10,8 +10,8 @@ defmodule RecumapWeb.API.HouseApiController do
   def index(conn, params) do
     config = Pow.Plug.fetch_config(conn)
     user = Pow.Plug.current_user(conn, config)
-    paginate_params = 
-      case Map.get(params, "org") do
+    paginate_params =
+      case Map.get(params, "house") do
         nil -> %{"house" => %{"user_id" => user.id}}
         %{} ->
           put_in(params, ["house", "user_id"], user.id)
