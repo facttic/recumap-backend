@@ -59,6 +59,8 @@ defmodule RecumapWeb.Router do
   scope "/api", RecumapWeb.API do
     pipe_through [:api, :api_protected]
 
+    get "/session/me", SessionController, :me
+    options "/session/me", SessionController, :options
     resources "/resource_types", ResourceTypeApiController
     options "/resource_types", ResourceTypeApiController, :options
     options "/resource_types/:id", ResourceTypeApiController, :options
