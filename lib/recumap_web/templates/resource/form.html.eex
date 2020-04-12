@@ -14,6 +14,12 @@
     </div>
 
     <div class="torch-form-group">
+      <%= label f, :resource_type_id %>
+      <%= select f, :resource_type_id, @resource_types %>
+      <%= error_tag f, :resource_type_id %>
+    </div>
+
+    <div class="torch-form-group">
       <%= label f, :details %>
       <%= textarea f, :details %>
       <%= error_tag f, :details %>

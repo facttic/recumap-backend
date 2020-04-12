@@ -32,14 +32,17 @@ defmodule RecumapWeb.ResourceController do
   end
 
   def new(conn, _params) do
-    resource_types = Resources.list_resource_types()
+    resource_types =
+      Resources.list_resource_types
+      |> Enum.map(&{&1.name, &1.id})
+
     changeset = Resources.change_resource(%Resource{})
     render(conn, "new.html", changeset: changeset, resource_types: resource_types)
   end
 
   def create(conn, %{"resource" => resource_params}) do
     user = Pow.Plug.current_user(conn)
-    resource_type = Resources.get_resource_type!(resource_params.resource_type_id)
+    resource_type = Resources.get_resource_type!(resource_params["resource_type_id"])
 
     case Resources.create_resource(resource_type, user.id, resource_params) do
       {:ok, resource} ->
@@ -57,9 +60,13 @@ defmodule RecumapWeb.ResourceController do
   end
 
   def edit(conn, %{"id" => id}) do
+    resource_types =
+      Resources.list_resource_types
+      |> Enum.map(&{&1.name, &1.id})
+
     resource = Resources.get_resource!(id)
     changeset = Resources.change_resource(resource)
-    render(conn, "edit.html", resource: resource, changeset: changeset)
+    render(conn, "edit.html", resource: resource, changeset: changeset, resource_types: resource_types)
   end
 
   def update(conn, %{"id" => id, "resource" => resource_params}) do
