@@ -4,13 +4,14 @@ defmodule Recumap.MixProject do
   def project do
     [
       app: :recumap,
-      version: "0.1.0",
+      version: File.read!("VERSION"),
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      releases: releases()
     ]
   end
 
@@ -49,11 +50,17 @@ defmodule Recumap.MixProject do
     ]
   end
 
+  # App releases configuration.
+  defp releases do
+    [
+      recumap: [
+        include_executables_for: [:unix],
+        applications: [runtime_tools: :permanent, recumap: :permanent]
+      ]
+    ]
+  end
+
   # Aliases are shortcuts or tasks specific to the current project.
-  # For example, to create, migrate and run the seeds file at once:
-  #
-  #     $ mix ecto.setup
-  #
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [

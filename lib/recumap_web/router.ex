@@ -30,10 +30,11 @@ defmodule RecumapWeb.Router do
   end
 
   scope "/", RecumapWeb do
-    pipe_through [:browser, :protected]
+    pipe_through :browser
 
-    get "/", UserController, :index
+    get "/*path", PageController, :index
 
+    # get "/", UserController, :index
     resources "/users", UserController
     resources "/resource_types", ResourceTypeController
     resources "/resources", ResourceController
