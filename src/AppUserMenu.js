@@ -20,6 +20,17 @@ const AppUserMenuView = props => {
   // }, [dataProvider, getJwtData, setUser]);
 
 
+  // <MenuItemLink
+  //   to={`/users/${user.id}`}
+  //   primaryText={user.name}
+  //   leftIcon={<Person />}
+  // />
+  // <MenuItemLink
+  //   to="/change-password"
+  //   primaryText="Modificar Contraseña"
+  //   leftIcon={<VpnKey />}
+  // />
+
   return (
     <UserMenu
       {...props}
@@ -34,16 +45,6 @@ const AppUserMenuView = props => {
         )
       }
     >
-      <MenuItemLink
-        to={`/users/${user.id}`}
-        primaryText={user.name}
-        leftIcon={<Person />}
-      />
-      <MenuItemLink
-        to="/change-password"
-        primaryText="Modificar Contraseña"
-        leftIcon={<VpnKey />}
-      />
     </UserMenu>
   );
 

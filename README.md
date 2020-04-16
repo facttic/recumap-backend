@@ -1,4 +1,19 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Recumap Frontend
+
+## Development
+
+### Setting environment variables
+
+> This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+You'll just need to copy `.env.example` to two environment files at the root of the project:
+
++ `.env.local`
++ `.env.production.local`
+
+Then set the values accordingly.
+
+> **Note**: `.env.local` will be used on `yarn start` and `.env.production.local` will be used on packages built using `yarn build`.
 
 ## Available Scripts
 
